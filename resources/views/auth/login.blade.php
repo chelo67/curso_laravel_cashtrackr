@@ -8,7 +8,7 @@
 @section('auth-contents')
 
 @if(session('error'))
-    <p class="my-10 text-center border border-red-400 bg-red-100 text-red-700 py-3">{{ session('error') }}</p>
+    <x-alert type="error" :message="session('error') " />
 @endif
 
     <form method="POST" action="{{ route('login.store') }}" class="mt-14 space-y-5" novalidate>
@@ -26,9 +26,7 @@
             />
         </div>
 
-        @error('email')
-            <p class="text-red-600">{{ $message }}</p>
-        @enderror
+       <x-input-error field="email" />
 
         <div class="flex flex-col gap-2">
             <div class="flex  items-center justify-between">
@@ -44,9 +42,7 @@
             />
         </div>
 
-         @error('password')
-            <p class="text-red-600">{{ $message }}</p>
-        @enderror
+        <x-input-error field="password" />
 
         <input 
             type="submit" 
