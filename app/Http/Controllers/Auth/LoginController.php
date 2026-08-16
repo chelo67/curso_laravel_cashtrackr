@@ -21,5 +21,7 @@ class LoginController extends Controller
       if(!auth::attempt($data)) {
         return back()->with('error', 'Credenciales incorrectas');
       }
+
+      return redirect()->route('dashboard');
     }
 }

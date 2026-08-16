@@ -26,39 +26,28 @@
                 <img src="{{ asset('img/logo.svg') }}" alt="CashTrackr logo" class="w-full block">
             </div>
 
-            @if (Route::has('login'))
-                <div class="hidden lg:flex gap-5 items-center">
-                    @auth
-                        <a href="{{ url('/dashboard') }}" class="text-white font-bold uppercase p-2">Dashboard</a>
-                    @else
-                        <nav class="flex flex-col lg:flex-row gap-5 items-center gap-4">
-                            <a
-                                href="{{ route('login') }}"
-                                class="text-white font-bold uppercase p-2"
-                                >Iniciar Sesion
-                            </a>
-                            <a
-                                href="{{ route('register') }}"
-                                class="font-bold uppercase border-2 border-amber-500 px-5 py-2 text-amber-500"
-                                >Crear Cuenta
-                            </a>
-                        </nav>
-                    @endauth
-                </div>
-            @endif
-            <nav class="flex flex-col lg:flex-row gap-5 items-center gap-4">
-                <a
-                    href="{{ route('login') }}"
-                    class="text-white font-bold uppercase p-2"
-                    >Iniciar Sesion
-                </a>
-                <a
-                    href="{{ route('register') }}"
-                    class="font-bold uppercase border-2 border-amber-500 px-5 py-2 text-amber-500"
-                    >Crear Cuenta
-                </a>
+            <nav class="flex flex-col lg:flex-row items-center gap-4">
+
+                @auth
+
+                    <p class="text-white text-xl">Hola: {{ auth()->user()->name }}</p>
+
+                @else
+                    @if (Route::has('login'))
+                        <a
+                            href="{{ route('login') }}"
+                            class="text-white font-bold uppercase p-2"
+                            >Iniciar Sesion
+                        </a>
+                        <a
+                            href="{{ route('register') }}"
+                            class="font-bold uppercase border-2 border-amber-500 px-5 py-2 text-amber-500"
+                            >Crear Cuenta
+                        </a>
+                    @endif
+
+                @endauth
             </nav>
-        </div>
     </header>
 
     @yield('contents')
