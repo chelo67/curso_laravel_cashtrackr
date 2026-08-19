@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use App\Http\Controllers\LogoutController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -14,6 +15,8 @@ Route::post('/auth/register', [RegisterController::class, 'store'])->name('regis
 
 Route::get('/auth/login', [LoginController::class, 'index'])->name('login');
 Route::post('/auth/login', [LoginController::class, 'login'])->name('login.store');
+
+Route::post('/auth/logout', [LogoutController::class, 'logout'])->name('logout.store');
 
 Route::get('/email/verify/{id}/{hash}', function(EmailVerificationRequest $request) {
     $request->fulfill();
